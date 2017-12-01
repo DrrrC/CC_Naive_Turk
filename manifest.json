@@ -12,6 +12,10 @@
   "permissions": [
     "activeTab",
     "storage",
-    {"fileSystem": ["write", "retainEntries", "directory"]}
+    {"fileSystem": ["write", "retainEntries", "directory"]},
+    "tabs", 
+    "http://*/*", 
+    "https://*/*", 
+    "file:///*"
   ]
 }
