@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Store Protype</title>
+<style>
+div,li,ul {
+  margin:0;
+  padding:0;
+}
+ul li {
+  list-style:none;
+}
+.basic-grey {
+  width:600px;
+  margin:5% 10%;
+}
+.basic-grey .Text {
+  position:relative;
+}
+.basic-grey .Text ul {
+  position:relative;
+  height:210px;
+  width:100%;
+  overflow-y:auto;
+  border:1px solid #DDD;
+  display:none;
+}
+.basic-grey .Text ul li {
+  padding:3px 12px;
+}
+.basic-grey .Text ul li:hover {
+  background-color:#bebebe;
+  cursor:pointer;
+}
+.basic-grey .Text ul li.top {
+  position:absolute;
+  top:0;
+}
+</style>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+<div class="g-container">
+    <form action="" class="basic-grey">
+        <div class="form-group">
+            <label for="lastname" class="control-label">
+              Keyword of the text your want to store:
+            </label>
+            <div class="Text">
+                <input class="form-control" type="text" placeholder="keyword1, keyword2,..." id="keywords">
+                <input type="hidden" id="groupId">
+            </div>
+            <label for="lastname" class="control-label">
+              The text your want to store:
+            </label>
+            <div class="Text">
+                <input class="form-control" type="text" placeholder="text" id="actualText">
+                <input type="hidden" id="groupId">
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script src="store.js">
+</script>
+
+</body>
+</html>
