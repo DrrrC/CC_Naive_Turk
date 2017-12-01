@@ -46,7 +46,7 @@ function errorHandler(e) {
 }
 
 // request the persistent storage space from local from user
-window.webkitStorageInfo.requestQuota(PERSISTENT, 100*1024*1024 /*100MB*/, function(grantedBytes) {
+window.webkitStorageInfo.requestQuota(PERSISTENT, 50*1024*1024 /*50MB*/, function(grantedBytes) {
   window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
 }, function(e) {
   console.log('Error', e);
