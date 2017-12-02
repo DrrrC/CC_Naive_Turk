@@ -36,7 +36,7 @@ var onInitFs = function(fs) {
   }
   // write certain content to a file with filename given
   write_file = function(filename, content){
-    console.log("in");
+    
     fs.root.getFile(filename, {create: true}, function(fileEntry) {
 
     // Create a FileWriter object for our FileEntry (log.txt).
@@ -71,10 +71,16 @@ var onInitFs = function(fs) {
          var reader = new FileReader();
          reader.onloadend = function(e) {
            // return the readcontent
-           var txtArea = document.createElement('textarea');
-           txtArea.value = this.result;
+           $("#content").remove();
+
+           $("#content_board").append("<br></br>");
+           var txtArea = $("<textarea id='content'></textarea>");
            $("#content_board").append(txtArea);
-           console.log(this.result);
+           $("#content").css("width",600+"px");
+           $("#content").css("height",400+"px");
+           //$("#content").css("value",this.result);
+           document.getElementById("content").value = this.result;
+
          };
 
          reader.readAsText(file);
