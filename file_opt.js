@@ -26,6 +26,15 @@ var onInitFs = function(fs) {
          reader.onloadend = function(e) {
            // return the readcontent
            console.log(this.result);
+
+           var title_list = this.result.split("\n");
+           for(var i = 0; i < title_list.length; i++){
+            var element = $("<li><a href=\"javascript:void(0)\">"+title_list[i]+"</a></li>");
+            
+            element.onclick = load_content(title_list[i]+"_content.txt");
+            $("#groupid").append(element);
+           }
+
          };
 
          reader.readAsText(file);
@@ -34,6 +43,7 @@ var onInitFs = function(fs) {
     }, errorHandler);
 
   }
+
   // write certain content to a file with filename given
   write_file = function(filename, content){
     
@@ -78,6 +88,7 @@ var onInitFs = function(fs) {
            $("#content_board").append(txtArea);
            $("#content").css("width",600+"px");
            $("#content").css("height",400+"px");
+           $("#content").css("resize", "none");
            //$("#content").css("value",this.result);
            document.getElementById("content").value = this.result;
 
@@ -126,7 +137,9 @@ var onInitFs = function(fs) {
  // prepare the list elements for the search group *******************
 
  // call read_list to get all existing saved survey titles
- 
+ if(document.getElementById("groupid"))
+  //console.log("getin!");
+  read_list("list.txt");
 
 
 }
