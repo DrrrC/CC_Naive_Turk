@@ -40,6 +40,7 @@ ul li {
 </style>
 </head>
 <body>
+<!--  -->
 <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
 <div class="g-container">
     <form action="" class="basic-grey">
@@ -48,7 +49,7 @@ ul li {
               Keyword of the text your want to store:
             </label>
             <div class="Text">
-                <input class="form-control" type="text" placeholder="keyword1, keyword2,..." id="keywords">
+                <input class="form-control" type="text" placeholder="title" id="title">
                 <input type="hidden" id="groupId">
             </div>
             <label for="lastname" class="control-label">
@@ -58,13 +59,14 @@ ul li {
                 <input class="form-control" type="text" placeholder="text" id="actualText">
                 <input type="hidden" id="groupId">
             </div>
+            <div id="storeContent">Save!</div>
         </div>
     </form>
 
 </div>
 
-<script src="store.js">
-</script>
+<script src="file_opt.js"></script>
+<script src="store.js"></script>
 
 </body>
 </html>
