@@ -16,38 +16,45 @@ function onInitFs(fs) {
   }, errorHandler);
 
   globle_fs = fs;
+  console.log(globle_fs);
+  write_file("test.txt","blabla");
+  read_file("test.txt");
+
+  
+
 
 }
 // error handler ********************
 function errorHandler(e) {
   var msg = '';
 
-  switch (e.code) {
-    case FileError.QUOTA_EXCEEDED_ERR:
-      msg = 'QUOTA_EXCEEDED_ERR';
-      break;
-    case FileError.NOT_FOUND_ERR:
-      msg = 'NOT_FOUND_ERR';
-      break;
-    case FileError.SECURITY_ERR:
-      msg = 'SECURITY_ERR';
-      break;
-    case FileError.INVALID_MODIFICATION_ERR:
-      msg = 'INVALID_MODIFICATION_ERR';
-      break;
-    case FileError.INVALID_STATE_ERR:
-      msg = 'INVALID_STATE_ERR';
-      break;
-    default:
-      msg = 'Unknown Error';
-      break;
-  };
+  // switch (e.code) {
+  //   case FileError.QUOTA_EXCEEDED_ERR:
+  //     msg = 'QUOTA_EXCEEDED_ERR';
+  //     break;
+  //   case FileError.NOT_FOUND_ERR:
+  //     msg = 'NOT_FOUND_ERR';
+  //     break;
+  //   case FileError.SECURITY_ERR:
+  //     msg = 'SECURITY_ERR';
+  //     break;
+  //   case FileError.INVALID_MODIFICATION_ERR:
+  //     msg = 'INVALID_MODIFICATION_ERR';
+  //     break;
+  //   case FileError.INVALID_STATE_ERR:
+  //     msg = 'INVALID_STATE_ERR';
+  //     break;
+  //   default:
+  //     msg = 'Unknown Error';
+  //     break;
+  // };
 
   console.log('Error: ' + msg);
 }
 
 // request the persistent storage space from local from user
 navigator.webkitPersistentStorage.requestQuota( 50*1024*1024 /*50MB*/, function(grantedBytes) {
+  window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
   window.requestFileSystem(window.PERSISTENT, grantedBytes , onInitFs,errorHandler);
 }, function(e) {
   console.log('Error', e);
@@ -62,16 +69,17 @@ function read_file(filename){
     // then use FileReader to read its contents.
     fileEntry.file(function(file) {
        var reader = new FileReader();
-
+       console.log("here");
        reader.onloadend = function(e) {
          // return the readcontent
-         return this.result;
+         console.log(this.result);
        };
 
        reader.readAsText(file);
     }, errorHandler);
 
   }, errorHandler);
+
 }
 
 // write content to certain file name file
