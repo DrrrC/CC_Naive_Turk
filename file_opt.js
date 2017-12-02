@@ -28,11 +28,13 @@ var onInitFs = function(fs) {
            console.log(this.result);
 
            var title_list = this.result.split("\n");
+           title_list.splice(-1,1);
            for(var i = 0; i < title_list.length; i++){
-            var element = $("<li><a href=\"javascript:void(0)\">"+title_list[i]+"</a></li>");
-            
-            element.onclick = load_content(title_list[i]+"_content.txt");
+            var element = $("<li id='"+title_list[i]+"'><a href=\"javascript:void(0)\">"+title_list[i]+"</a></li>");
             $("#groupid").append(element);
+            var e = document.getElementById(title_list[i]);
+            e.addEventListener('click',load_content(title_list[i]+"_content.txt")); 
+            
            }
 
          };
