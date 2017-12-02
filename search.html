@@ -1,43 +1,41 @@
-
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Search Protype</title>
-<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
 <style>
 div,li,ul {
-	margin:0;
-	padding:0;
+  margin:0;
+  padding:0;
 }
 ul li {
-	list-style:none;
+  list-style:none;
 }
 .basic-grey {
-	width:600px;
-	margin:5% 10%;
+  width:600px;
+  margin:5% 10%;
 }
 .basic-grey .Text {
-	position:relative;
+  position:relative;
 }
 .basic-grey .Text ul {
-	position:relative;
-	height:210px;
-	width:100%;
-	overflow-y:auto;
-	border:1px solid #DDD;
-	display:none;
+  position:relative;
+  height:210px;
+  width:100%;
+  overflow-y:auto;
+  border:1px solid #DDD;
+  display:none;
 }
 .basic-grey .Text ul li {
-	padding:3px 12px;
+  padding:3px 12px;
 }
 .basic-grey .Text ul li:hover {
-	background-color:#bebebe;
-	cursor:pointer;
+  background-color:#bebebe;
+  cursor:pointer;
 }
 .basic-grey .Text ul li.top {
-	position:absolute;
-	top:0;
+  position:absolute;
+  top:0;
 }
 </style>
 </head>
@@ -83,36 +81,7 @@ ul li {
 
 </div>
 
-<script>
-jQuery.expr[':'].Contains = function(a, i, m) {
-    return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
-};
-
-function filterList(list) {
-    $('#js-groupId').bind('input propertychange', function() {
-        var filter = $(this).val();
-        if (filter) {
-            $matches = $(list).find('a:Contains(' + filter + ')').parent();
-            $('li', list).not($matches).slideUp();
-            $matches.slideDown();
-        } else {
-            $(list).find("li").slideDown();
-        }
-    });
-}
-$(function() {
-    filterList($("#groupid"));
-    $('#js-groupId').bind('focus', function() {
-        $('#groupid').slideDown();
-    }).bind('blur', function() {
-        $('#groupid').slideUp();
-    })
-    $('#groupid').on('click', 'li', function() {
-        $('#js-groupId').val($(this).text())
-        $('#groupId').val($(this).data('id'))
-        $('#groupid').slideUp()
-    });
-})
+<script src="search.js">
 </script>
 
 </body>
