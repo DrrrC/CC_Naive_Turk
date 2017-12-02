@@ -12,6 +12,7 @@
   "permissions": [
     "activeTab",
     "storage",
+    "unlimitedStorage",
     {"fileSystem": ["write", "retainEntries", "directory"]},
     "tabs", 
     "http://*/*", 
