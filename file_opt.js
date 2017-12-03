@@ -33,7 +33,7 @@ var onInitFs = function(fs) {
             var element = $("<li id='"+title_list[i]+"'><a href=\"javascript:void(0)\">"+title_list[i]+"</a></li>");
             $("#groupid").append(element);
             var e = document.getElementById(title_list[i]);
-            e.addEventListener('click',load_content(title_list[i]+"_content.txt")); 
+            e.addEventListener('click',load_content); 
             
            }
 
@@ -51,30 +51,34 @@ var onInitFs = function(fs) {
     
     fs.root.getFile(filename, {create: true}, function(fileEntry) {
 
-    // Create a FileWriter object for our FileEntry (log.txt).
-    fileEntry.createWriter(function(fileWriter) {
+      // Create a FileWriter object for our FileEntry (log.txt).
+      fileEntry.createWriter(function(fileWriter) {
 
-      fileWriter.onwriteend = function(e) {
-        console.log('Write completed.');
-      };
+        fileWriter.onwriteend = function(e) {
+          console.log('Write completed.');
+        };
 
-      fileWriter.onerror = function(e) {
-        console.log('Write failed: ' + e.toString());
-      };
+        fileWriter.onerror = function(e) {
+          console.log('Write failed: ' + e.toString());
+        };
 
-      // Create a new Blob and write it to log.txt.
-      var blob = new Blob([content], {type: 'text/plain'});
+        // Create a new Blob and write it to log.txt.
+        var blob = new Blob([content], {type: 'text/plain'});
 
-      fileWriter.write(blob);
+        fileWriter.write(blob);
+
+      }, errorHandler);
 
     }, errorHandler);
-
-  }, errorHandler);
   }
 
   
   // load the content of certain file and add a textarea element to the html
-  load_content = function(filename){
+
+  load_content = function(e){
+
+    var filename = this.id + "_content.txt";
+
     fs.root.getFile(filename, {}, function(fileEntry) {
 
       // Get a File object representing the file,
@@ -85,7 +89,7 @@ var onInitFs = function(fs) {
            // return the readcontent
            $("#content").remove();
 
-           $("#content_board").append("<br></br>");
+           //$("#content_board").append("<br id = 'space'></br>");
            var txtArea = $("<textarea id='content'></textarea>");
            $("#content_board").append(txtArea);
            $("#content").css("width",600+"px");
@@ -102,6 +106,9 @@ var onInitFs = function(fs) {
     }, errorHandler);
 
   }
+
+
+
 
   // append certain content to certain file
   append_content = function(filename,content){
