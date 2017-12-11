@@ -25,15 +25,18 @@ var onInitFs = function(fs) {
          
          reader.onloadend = function(e) {
            // return the readcontent
-           console.log(this.result);
+           //console.log(this.result);
 
            var title_list = this.result.split("\n");
            title_list.splice(-1,1);
+           //console.log(title_list);
            for(var i = 0; i < title_list.length; i++){
-            var element = $("<li id='"+title_list[i]+"'><a href=\"javascript:void(0)\">"+title_list[i]+"</a></li>");
-            $("#groupid").append(element);
-            var e = document.getElementById(title_list[i]);
-            e.addEventListener('click',load_content); 
+             var element = $("<li id='"+title_list[i]+"'><a href=\"javascript:void(0)\">"+title_list[i]+"</a></li>");
+             $("#groupid").append(element);
+             console.log(title_list[i]);
+             var e = document.getElementById(title_list[i]);
+             e.addEventListener('click',load_content); 
+             console.log(title_list[i] + " succeed!");
             
            }
 
@@ -77,6 +80,8 @@ var onInitFs = function(fs) {
 
   load_content = function(e){
 
+    console.log("start load content: " + this.id);
+
     var filename = this.id + "_content.txt";
 
     fs.root.getFile(filename, {}, function(fileEntry) {
@@ -86,15 +91,18 @@ var onInitFs = function(fs) {
       fileEntry.file(function(file) {
          var reader = new FileReader();
          reader.onloadend = function(e) {
+          console.log("load end!: "+ this.result);
+
            // return the readcontent
            $("#content").remove();
 
            //$("#content_board").append("<br id = 'space'></br>");
-           var txtArea = $("<textarea id='content'></textarea>");
+           var txtArea = $("<textarea id='content' readonly ></textarea>");
            $("#content_board").append(txtArea);
            $("#content").css("width",600+"px");
            $("#content").css("height",400+"px");
            $("#content").css("resize", "none");
+           //$("#content").css("","");
            //$("#content").css("value",this.result);
            document.getElementById("content").value = this.result;
 
